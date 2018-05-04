@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>ROCK, PAPER and SCISSORS</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script   src="http://code.jquery.com/jquery-3.3.1.js"   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="   crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script>
+            function myFunction(){
+                document.getElementById("rock").innerHTML="Hello rock";
+            }
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <h1 style="text-align: center; padding-top: 10%">Rock, Paper and Scissors Game</h1>
+            
+            <div class="row" style="margin: 15%; ">
+                <div class="col-md-3 mr-auto " >
+                    <a href="#" onclick="play('scissors')">
+                        <img class="img-fluid img-thumbnail" style="display: flex" src="pictures/scissors1.png"  alt="gfhds" onmouseover="grow(this)" onmouseout="reduce(this)" >
+                        </a>            
+                </div>
+                
+                <div class="col-md-3 mr-auto" > 
+                    <a href="#" onclick="play('rock')">
+                        <img class="img-fluid img-thumbnail" src="pictures/rock1.png"  alt="hdfghs" onmouseover="grow(this)" onmouseout="reduce(this)">
+                    </a>
+                </div>
+                
+                <div class="col-md-3" >
+                    <a href="#" onclick="play('paper')">
+                        <img class="img-thumbnail img-fluid" src="pictures/paper1.png"  alt="dhgfhj" onmouseover="grow(this)" onmouseout="reduce(this)">
+                    </a>
+                </div>   
+            </div>
+            
+            <div class="jumbotron">
+            <h4 id="result" style="text-align: center"> </h4>
+            </div>
+            
+        </div>
+        
+        <script>
+            function play(item){
+                var xhttp= new XMLHttpRequest();
+                xhttp.onreadystatechange = function(){
+                    if(this.readyState==4 && this.status ==200){
+                        document.getElementById("result").innerHTML = this.responseText;
+                    }
+                };
+                xhttp.open("GET", "GameFunctions.php?choice="+ item, true);
+                xhttp.send();
+            }
+      
+            function grow(event){
+                event.style.backgroundColor = "grey";
+            }
+            
+            function reduce(event){
+                event.style.backgroundColor = "white";
+            }
+            
+        </script>
+        
+    </body>
+</html>
+
+<!--
+To do:
+how to make ajax request for value of a specific var from the file.
+1) a different function using JQuery to output $user vs $computer at the top
+    before the result is shown
+2) Using JS, make some effects on images (on a precise image that is clicked/hovered)
+-->
